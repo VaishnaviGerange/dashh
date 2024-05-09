@@ -1,0 +1,50 @@
+#Data cleaning--------------------------------------
+
+df.isnull().sum()
+
+df.dropna()
+
+#data integration---------------------------------------
+
+df1 = df[['age','sex']].loc[0:5]
+df1
+
+merged=pd.concat([df1,df2])
+merged
+
+#data transformation----------------------------------------
+
+df.transpose()
+
+reshape_arr=np.array([1,2,3,4,5,6])
+reshape_arr.reshape(3,2)
+
+#data model building------------------------------------------
+
+from sklearn import linear_model
+from sklearn.model_selection import train_test_split
+
+x=df[['age']]
+y=df[['chol']]
+
+x_train,x_test,y_train,y_test=train_test_split(x,y)
+regression=linear_model.LogisticRegression()
+
+model=regression.fit(x_train,y_train)
+y_pred=model.predict(x_test)
+print(y_pred)
+
+
+from sklearn.metrics import accuracy_score
+score=accuracy_score(y_test,y_pred)
+print(score)
+
+visualizations------------------------------------------------------
+
+sns.boxplot(data=df, x='age')
+sns.histplot(data=df, x='age')
+sns.lineplot(data=df, x='thal',y='chol')
+sns.lineplot(data=df, x='thal',y='chol',hue='target')
+
+plt.title("  ")
+plt.show()
